@@ -6,6 +6,7 @@ import cv2, pafy
 cameraIP = "https://192.168.0.15:8080/video"
 
 #Here parameter 0 is a path of any video use for webcam
+
 cap = cv2.VideoCapture(cameraIP)
 #cap.open()
 
