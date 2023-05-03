@@ -6,6 +6,7 @@ import numpy as np
 # print(events)
 
 def click_event_fun(event, x, y, flags, params):
+    '''
     if event == cv2.EVENT_LBUTTONDOWN:
         print(x, " , ", y)
 
@@ -13,6 +14,29 @@ def click_event_fun(event, x, y, flags, params):
         strXY = str(x) + " " + str(y)
         cv2.putText(img, strXY, (x, y), font, 1, (255, 255, 0), 2)
         cv2.imshow("Image", img)
+    '''
+
+    '''
+    if event == cv2.EVENT_LBUTTONDOWN:
+        cv2.circle(img, (x, y), 3, (0, 0, 255), -1)
+        points.append((x, y))
+
+        if len(points) >= 2:
+            cv2.line(img, points[-1], points[-2], (255, 0, 0), 2)
+        cv2.imshow("Image", img)
+    '''
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        blue = img[y, x, 0]  # It gives blue clr
+        green = img[y, x, 1]
+        red = img[y, x, 2]
+
+        cv2.circle(img, (x, y), 10, (0, 0, 255), -1)
+        mzColorImage = np.zeros((512, 512, 3), np.uint8)
+
+        mzColorImage[:] = [blue, green, red]
+        cv2.imshow("Image", img)
+        cv2.imshow("Color", mzColorImage)
 
     if event == cv2.EVENT_RBUTTONDOWN:
         blue = img[y, x, 0]  # It gives blue clr
@@ -25,8 +49,10 @@ def click_event_fun(event, x, y, flags, params):
         cv2.imshow("Image", img)
 
 
-img = np.zeros((512, 512, 3), np.uint8)
+# img = np.zeros((512, 512, 3), np.uint8)
 img = cv2.imread("lena.jpg")
+
+points = []
 
 # window name should be same in all the imshow
 cv2.imshow("Image", img)
