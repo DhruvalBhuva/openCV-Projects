@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+img = cv2.imread("lena.jpg ")
+
 
 def chnageColor(x):
     print(x)
@@ -15,7 +17,6 @@ switch = '0: Color\n 1 : Gray'
 cv2.createTrackbar(switch, "Image", 0, 1, chnageColor)
 
 while 1:
-    img = cv2.imread("lena.jpg")
 
     k = cv2.waitKey(1) & 0xFF
     if k == 27:  # 27 is ascii for esc
