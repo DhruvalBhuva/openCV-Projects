@@ -17,9 +17,10 @@ In Thresholding, pixels that are alike in gray scale(or in some other feature) a
 
 import cv2 as cv
 import numpy as np
+from matplotlib import pyplot as plt
+# '''
 
-'''
-# img = cv.imread("gradient.png")
+img = cv.imread("gradient.png")
 
 # threshold(<srs>,<thresh>,<maxval>,<type>,dst=none)
 _, threshold1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)  # Till threshold value would be 0
@@ -37,10 +38,21 @@ cv.imshow("Img", img)
 # cv.imshow("Threshold 4", threshold4)
 # cv.imshow("Threshold 5", threshold5)
 
+# => Show all the windows using matplotlib
+titles = ["Original Image","Binary","Binary_Inv","Trunc","ToZero","ToZeroInv"]
+images=[img,threshold1,threshold2,threshold3,threshold4,threshold5]
+
+for i in range(len(images)):
+    plt.subplot(2,3,i+1)
+    plt.imshow(images[i], 'gray')
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+    
+plt.show()
+# '''
+
 '''
-
-
-''' ==>> Adeptive Thresold: Diffrent thresold value for different region of img.'''
+# ==>> Adeptive Thresold: Diffrent thresold value for different region of img
 img = cv.imread('sudoku.png',0)
 _, th1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)
 
@@ -58,7 +70,7 @@ cv.imshow("Image", img)
 cv.imshow("THRESH_BINARY", th1)
 cv.imshow("ADAPTIVE_THRESH_MEAN_C", th2)
 cv.imshow("ADAPTIVE_THRESH_GAUSSIAN_C", th3)
+'''
 
-
-cv.waitKey(0)
-cv.destroyAllWindows()
+# cv.waitKey(0)
+# cv.destroyAllWindows()
